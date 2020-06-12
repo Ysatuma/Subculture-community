@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_074214) do
+ActiveRecord::Schema.define(version: 2020_06_12_235238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_074214) do
     t.integer "group_id"
     t.string "music"
     t.string "illust"
+    t.integer "contents_id"
     t.index ["genre_id"], name: "index_hobbies_on_genre_id"
     t.index ["user_id"], name: "index_hobbies_on_user_id"
   end
