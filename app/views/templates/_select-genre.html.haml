@@ -1,0 +1,3 @@
+- @all_genres.each do |genre|
+  .home-select  
+    = link_to "#{genre.name}", genre_path(genre.id),class:"home-select__list", method: "get"

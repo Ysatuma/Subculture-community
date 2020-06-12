@@ -1,0 +1,35 @@
+//コンテンツ画面のスタイル設定
+.content{
+  padding: 10px;
+
+  &__title{
+    font-size: 30px;
+  }
+
+  &__wrap{
+    display: flex;
+
+    &__player{
+      height: 80%;
+    }
+    &__info{
+      margin: 40px 20px 0px 20px;
+    
+      &__add-mylist{
+        display: none;
+      }
+
+      &__added{
+        display: none;
+      }
+
+      &__rm-mylist{
+        display: none;
+      }
+
+      &__removed{
+        display: none;
+      }
+    }
+  }
+}

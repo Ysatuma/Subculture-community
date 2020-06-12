@@ -1,0 +1,12 @@
+
+= render 'templates/user_menu',group: @group, groups: @groups, genre: @genre
+
+.contents-main
+  .groups
+    = render 'group_sidebar', group: @group
+
+    .groups__contents
+      - @hobbies.each_with_index do |hobby,n|
+        = render 'templates/content-info', hobby: hobby, genre: @genre, fav_list: @fav_list[n]      
+
+    

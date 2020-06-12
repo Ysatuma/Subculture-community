@@ -1,0 +1,67 @@
+-# ユーザー機能メニュー
+.user-menu
+  -# ジャンルの管理メニュー
+  .user-menu__genre
+    =icon('fas','list')
+    ジャンル
+    .user-menu__genre__list
+      - @all_genres.each do |genre|
+        .user-menu__genre__list__li.jsstyle   
+          = link_to "#{genre.name}", genre_path(genre.id), method: "get"
+
+  -# ユーザー昨日の管理メニュー
+  - if user_signed_in?
+    -# 所属グループの管理メニュー
+    .user-menu__group
+      =icon('fas','user-friends')
+      グループ
+      .user-menu__group__list  
+
+        -#ジャンルが指定されていなければ表示しない 
+        - if params[:controller]!="mylist" &&  params[:controller]!="home"   
+          .user-menu__group__list__new.jsstyle   
+            = link_to "新しいグループを作成",  new_genre_group_path(genre.id)
+
+          -# グループ画面にいなければ表示しない
+          - if params[:controller]=="groups" 
+            .user-menu__group__list__edit.jsstyle   
+              = link_to "選択中のグループを編集",  edit_genre_group_path(genre.id, group.id)
+
+          -# ログイン中のユーザーが所属していてかつ現在選択中のジャンルのグループを表示
+          - groups.each do |group|
+            .user-menu__group__list__li.jsstyle   
+              = link_to "#{group.name}", genre_group_path(genre.id, group.id)
+
+    .user-menu__my
+      = link_to user_mylist_index_path(current_user.id), method: "get" do
+        =icon('fas','bookmark')
+        マイリスト
+      .user-menu__my__list
+        .user-menu__my__list__upload.jsstyle
+          = link_to "コンテンツ投稿", new_user_mylist_path(current_user.id)
+        - @all_genres.each do |genre|
+          .user-menu__my__list__li.jsstyle   
+            = link_to "#{genre.name}", user_mylist_genre_path(current_user.id,genre.id), method: "get"
+
+
+    .user-menu__info
+      .user-menu__info__name
+        =icon('fas','user')
+        = "#{@user.name}さん"
+      .user-menu__info__edit
+        = link_to destroy_user_session_path, class: "user-menu__info__edit__logout", method: "delete" do
+          .user-menu__info__edit__logout--icon
+            = icon('fas','sign-out-alt',class: 'fa-lg')
+          ログアウト
+        
+        = link_to edit_user_path(current_user.id), class: 'user-menu__info__edit__user' , method: "get" do
+          .user-menu__info__edit__user--icon
+            = icon('fas','edit',class: 'fa-lg')
+          編集
+  - else
+    = link_to "ログイン", new_user_session_path, class: 'user-menu__signin'
+    = link_to "新規登録", new_user_registration_path, class: 'user-menu__register'
+
+  = link_to root_path, class: 'user-menu__back' do
+    = icon('fas','arrow-up')
+    トップページへ

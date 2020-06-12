@@ -1,0 +1,9 @@
+//ユーザーメニューのボタンを設定
+@mixin set_menu_btn($width,$height) {
+  @include set_box_size($width,$height);
+  line-height: 50px;
+  margin-top: 5px;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to right, #4169e1 0% 50%, transparent 100%);
+  border-image-slice: 1;
+}

@@ -1,0 +1,202 @@
+//グループホーム画面のスタイル設定
+.groups{
+  @include set_box_size(100%,100%);
+  display: flex;
+  border: 1px solid #770000;
+
+  // グループ一覧
+  &__sidebar{
+    @include set_box_size(30%,100%);
+    border-right: 1px solid #770000;   
+
+    &__group{
+      height: 80px;
+      background-color: #999999;
+      line-height: 35px;
+      padding: 5px;
+      position: relative;
+
+      &__upper{
+        @include set_boxes_to_horizontal(space-between);
+
+        &__name{
+
+        }
+
+        &__post-btn{
+          font-size: 10px;
+          text-decoration: none;
+        }
+      }
+
+      &__member{
+        font-size: 14px;
+      }
+    }
+
+    // メッセージ一覧
+    &__messages{
+      height: calc(100% - 160px);
+      background-color: #DDDDDD;
+      overflow: scroll;
+
+      &__message{
+        background-color: orange;
+        border-bottom: 1px solid red;
+        padding: 5px;
+
+        &__info{
+          @include set_boxes_to_horizontal(space-between);
+
+          &__contributor{
+            font-size: 14px;
+          }
+
+          &__timeline{
+            font-size: 10px;
+          }
+        }
+      }
+
+
+    }
+
+    &__form{
+      height: 80px;
+      bottom: 0px;
+
+      &__content{
+        background-color: #ffffff;
+
+        &__frame{
+          display: flex;
+
+          &__text{
+            width: 80%;
+            height: 80px;
+          }
+
+          &__submit{
+            @include set_box_size(20%,80px);
+          }
+        }
+      }
+    }
+  }
+
+  //投稿コンテンツ一覧
+  &__contents{
+    @include set_box_size(70%,100%);
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+  }
+}
+
+
+//グループ作成、編集画面
+h1 {
+  letter-spacing: 2px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+h2 {
+  margin-bottom: 10px;
+  color: #f05050;
+  font-size: 14px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+.chat-group-form {
+  width: 980px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  &__errors {
+    margin: 30px 0;
+    padding: 20px 40px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    text-align: center;
+  }
+  &__label {
+    display: block;
+    line-height: 50px;
+    font-weight: bold;
+    text-align: right;
+  }
+  &__input {
+    float: left;
+    width: 100%;
+    line-height: 30px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+  }
+  &__action-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    color: #fff;
+    background-color: #38aef0;
+    border: 0;
+  }
+  &__field {
+    margin-top: 30px;
+    &:after {
+      content: "";
+      clear: both;
+      display: block;
+    }
+    &--left {
+      float: left;
+      width: 30%;
+      padding-right: 20px;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+    &--right {
+      float: right;
+      width: 70%;
+    }
+  }
+}
+
+.chat-group-user {
+  padding: 0 15px;
+  line-height: 50px;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+  &__name {
+    float: left;
+  }
+  &__btn {
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+    &--add {
+      color: #38aef0;
+    }
+    &--remove {
+      color: #f05050;
+    }
+  }
+}

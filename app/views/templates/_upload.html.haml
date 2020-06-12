@@ -1,0 +1,41 @@
+.upload
+  = form_for @hobby ,url: user_mylist_index_path(current_user.id),:multipart => true, class:"upload__form" do |form|
+    .upload__form__genre.upstyle
+      ジャンル：
+      =form.select :genre_id, [["-----", 0],["映画", 1],["音楽", 2],["イラスト",3]], class: 'upload__form__genre__selcter'
+
+    .upload__form__title.upstyle
+      タイトル：
+      =form.text_field :title, placeholder: "title"
+
+    -#動画投稿用フォーム 
+    #movie-form.upload__form__content.upstyle
+      %label.upload__form__content--icon
+        =icon('fas','film', class: 'fa-5x')
+        =form.file_field :content, class: "upload__form__content--icon__filefield"
+      .upload__form__content__message
+        アイコンをクリックして動画をアップロードしてください
+
+    -# 音楽投稿用フォーム
+    #music-form.upload__form__content.upstyle
+      %label.upload__form__content--icon
+        =icon('fas','music', class: 'fa-5x')
+        =form.file_field :music, class: "upload__form__content--icon__filefield"
+      .upload__form__content__message
+        アイコンをクリックして音楽をアップロードしてください
+
+    -# イラスト投稿用フォーム
+    #illust-form.upload__form__content.upstyle
+      %label.upload__form__content--icon
+        =icon('fas','image', class: 'fa-5x')
+        =form.file_field  :illust, class: "upload__form__content--icon__filefield"
+        アイコンをクリックしてイラストをアップロードしてください
+
+
+    -# グループid用の隠しパラメータ
+    - if params[:controller]=="upload/contents" 
+      =form.hidden_field :group_id,type: 'hidden', value: "#{group.id}"
+    - else
+      =form.hidden_field :group_id,type: 'hidden', value: "0"
+
+    =form.submit "投稿する"

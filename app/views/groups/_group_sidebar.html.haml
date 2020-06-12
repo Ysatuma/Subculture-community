@@ -1,0 +1,34 @@
+//サイドバー下部、グループリスト
+.groups__sidebar
+  .groups__sidebar__group
+    .groups__sidebar__group__upper
+      .groups__sidebar__group__upper__name
+        = "グループ名：#{group.name}"  
+      .groups__sidebar__group__upper__post-btn
+        = button_to  new_genre_group_upload_content_path(params[:genre_id],group.id), method: "get" do
+          コンテンツを投稿する  
+      
+    .groups__sidebar__group__member
+      %span メンバー：
+      - group.users.each do |user|
+        = user.name
+        = ", "
+  .groups__sidebar__messages
+    - @messages.each do |message|
+      .groups__sidebar__messages__message
+        .groups__sidebar__messages__message__info
+          .groups__sidebar__messages__message__info__contributor
+            = "投稿者：#{message.user.name}"
+          .groups__sidebar__messages__message__info__timeline
+            = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+        .wrapper__chat-main__content__message__text
+          = simple_format(message.content)
+
+
+  .groups__sidebar__form
+    .groups__sidebar__form__content
+      = form_for [@genre,@group, @message], html: { class: "groups__sidebar__form__content__frame"}   do |form|
+        = form.text_area  :content, class: "groups__sidebar__form__content__frame__text", placeholder: "チャットを入力"
+        = form.submit '送信', class: "groups__sidebar__form__content__frame__submit"
+        
+        

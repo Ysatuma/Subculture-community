@@ -1,0 +1,28 @@
+.upload{
+
+  &__form{
+
+    &__genre{
+      height: 30px;
+    }
+
+    &__content{
+      display: none;
+      &--icon{
+
+        &__filefield{
+          display: none;
+        }
+      }
+    }  
+  }
+}
+
+#hobby_genre_id{
+  height: 30px;
+}
+
+.upstyle{
+  margin-bottom: 10px;
+}
+

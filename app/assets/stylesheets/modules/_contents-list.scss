@@ -1,0 +1,40 @@
+//コンテンツプレビュー画面のスタイル設定
+
+.contents-list{
+  @include set_box_size(170px,225px);
+  background-color: #DDFFFF;
+  border: 1px solid #BBFFFF;
+  margin: 10px;
+  padding: 5px;
+  color:#444444;
+  @include set_boxes_to_horizontal(space-between);
+  flex-direction: column;
+
+  &__cnt{
+    &__factor{
+      @include set_box_size(160px,120px);
+    }
+
+    &__title{
+
+      &__no-smnl{
+        margin-top: 30px;
+        @include set_boxes_to_horizontal(center);
+
+        &-link{
+          text-decoration: none;
+        }
+      }
+
+      &__comment{
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+  }
+
+  &__info{
+    font-size: 14px;
+  }
+
+}

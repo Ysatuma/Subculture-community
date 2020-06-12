@@ -1,0 +1,13 @@
+//共通のmixinを記載
+
+//汎用的なボックス要素のサイズ設定
+@mixin set_box_size($width,$height) {
+  height: $height;
+  width:  $width;
+}
+
+//水平方向に要素を並べる
+@mixin set_boxes_to_horizontal($option){
+  display: flex;
+  justify-content: $option;
+}
