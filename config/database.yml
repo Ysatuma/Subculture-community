@@ -80,6 +80,11 @@ test:
 #
 production:
   <<: *default
-  database: subculture_group_for_postgresql_production
-  username: subculture_group_for_postgresql
-  password: <%= ENV['SUBCULTURE_GROUP_FOR_POSTGRESQL_DATABASE_PASSWORD'] %>
+
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+  # database: subculture_group_for_postgresql_production
+  # username: subculture_group_for_postgresql
+  # password: <%= ENV['SUBCULTURE_GROUP_FOR_POSTGRESQL_DATABASE_PASSWORD'] %>
