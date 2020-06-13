@@ -1,11 +1,10 @@
 class Hobby < ApplicationRecord
   belongs_to :genre
   belongs_to :user
+  belongs_to :movie
+  belongs_to :music
+  belongs_to :illust
   has_many :favorite
-
-  mount_uploader :content, ContentUploader
-  mount_uploader :music, MusicUploader
-  mount_uploader :illust, IllustUploader
 
   validates :title, :presence => true
 

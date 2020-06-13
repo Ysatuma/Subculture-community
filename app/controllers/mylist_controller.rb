@@ -53,10 +53,10 @@ class MylistController < ApplicationController
     when '3'
       params.require(:hobby).permit(:title, :illust, :genre_id, :group_id).merge(user_id: current_user.id)
     else
-      
+
     end
     
-  end
+  end  
 
   def save_location
     @location = "public/uploads/hobby/content"
