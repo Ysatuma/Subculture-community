@@ -1,9 +1,9 @@
 class Hobby < ApplicationRecord
   belongs_to :genre
   belongs_to :user
-  belongs_to :movie
-  belongs_to :music
-  belongs_to :illust
+  has_one :movie
+  has_one :music
+  has_one :illust
   has_many :favorite
 
   validates :title, :presence => true

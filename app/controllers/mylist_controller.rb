@@ -15,8 +15,6 @@ class MylistController < ApplicationController
   # 投稿されたコンテンツをDBへ登録する
   def create
     @hobby = Hobby.create(hobby_params)
-
-    binding.pry
     # コンテンツのジャンル毎に処理を変更
     case @hobby[:genre_id]
 
@@ -61,16 +59,7 @@ class MylistController < ApplicationController
 
   # hobbyテーブル用のストロングパラメータ
   def hobby_params
-    case params[:hobby][:genre_id]
-    when '1'
-      params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
-    when '2'
-      params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
-    when '3'
-      params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
-    else
-
-    end  
+    params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
   end  
 
   # 各コンテンツテーブル用のストロングパラメータ
