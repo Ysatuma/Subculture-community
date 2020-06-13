@@ -2,6 +2,6 @@ class Illust < ApplicationRecord
 
   belongs_to :hobby
 
-  mount_uploader :illust, IllustUploader
+  mount_uploader :content, IllustUploader
 
 end

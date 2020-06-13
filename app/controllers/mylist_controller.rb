@@ -18,33 +18,26 @@ class MylistController < ApplicationController
     # コンテンツのジャンル毎に処理を変更
     case @hobby[:genre_id]
 
-    # 動画を保存
+    # 動画を保存、スクリーンショットを作成、DBへ登録
     when 1
-      @video = Video.new(content_params) 
-      @video.save!
-      @hobby.contents_id = @video.id
-      binding.pry
-      # スクリーンショットを作成、DBへ登録
-
+      @video = Video.create(content_params) 
       file_name = params[:hobby][:content].original_filename
-      movie = FFMPEG::Movie.new("#{@location}/#{@hobby[:id]}/#{file_name}")  
-      movie.screenshot("#{@location}/#{@hobby[:id]}/screenshot.jpg",resolution: '160x120')
-      @video.thumb = "/uploads/hobby/content/#{@hobby[:id]}/screenshot.jpg"
+      movie = FFMPEG::Movie.new("#{@location}/#{@video[:id]}/#{file_name}")  
+      movie.screenshot("#{@location}/#{@video[:id]}/screenshot.jpg",resolution: '160x120')
+      @video.thumb = "/uploads/video/content/#{@video[:id]}/screenshot.jpg"
       @video.save!
 
     #音楽を保存
-    when 2
+    when 2    
       @music = Music.create(content_params) 
-      @hobby.contents_id = @music.id
+
     # イラストを保存  
     when 3
       @illust = Illust.create(content_params) 
-      @hobby.contents_id = @illust.id
+
     else
     end
-
     @hobby.save!
-    binding.pry
 
     # グループ用の投稿か否かでリダイレクト先を変更
     if params[:hobby][:group_id] != '0'
@@ -65,10 +58,10 @@ class MylistController < ApplicationController
 
   # 各コンテンツテーブル用のストロングパラメータ
   def content_params
-    params.require(:hobby).permit(:content)    
+    params.require(:hobby).permit(:content).merge(hobby_id: @hobby.id)
   end  
 
   def save_location
-    @location = "public/uploads/hobby/content"
+    @location = "public/uploads/video/content"
   end
 end

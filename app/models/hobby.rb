@@ -1,7 +1,7 @@
 class Hobby < ApplicationRecord
   belongs_to :genre
   belongs_to :user
-  has_one :movie
+  has_one :video
   has_one :music
   has_one :illust
   has_many :favorite

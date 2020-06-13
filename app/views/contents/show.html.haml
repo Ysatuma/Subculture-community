@@ -8,11 +8,11 @@
   .content__wrap
     .content__wrap__player
       - if @genre.id == 1
-        = video_tag "/uploads/hobby/content/#{@hobby.id}/#{@hobby.content.identifier}", controls: 'true',height: "480", width: "640"
+        = video_tag "#{@hobby.video.content}", controls: 'true',height: "480", width: "640"
       - elsif  @genre.id == 2
-        = audio_tag "/uploads/hobby/music/#{@hobby.id}/#{@hobby.music.identifier}", controls: 'true'
+        = audio_tag "#{@hobby.music.content}", controls: 'true'
       - else
-        = image_tag @hobby.illust.url
+        = image_tag @hobby.illust.content.to_s
 
     .content__wrap__info
       .content__wrap__info__author
