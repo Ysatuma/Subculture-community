@@ -23,8 +23,7 @@ class ContentsController < ApplicationController
     @hobby = Hobby.find(params[:id])
     @genre = Genre.find(params[:genre_id])
     @youtube_data = find_videos('明日香ちゃんねる')
-
-    binding.pry
+        
   end
 
   # お気に入り登録をDBから削除
