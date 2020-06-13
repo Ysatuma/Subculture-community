@@ -21,8 +21,9 @@ class MylistController < ApplicationController
     # 動画を保存
     when 1
       @video = Video.new(content_params) 
+      @video.save!
       @hobby.contents_id = @video.id
-
+      binding.pry
       # スクリーンショットを作成、DBへ登録
 
       file_name = params[:hobby][:content].original_filename

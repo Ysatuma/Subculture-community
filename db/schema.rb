@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_13_011224) do
+ActiveRecord::Schema.define(version: 2020_06_13_011836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_06_13_011224) do
     t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "hobby_id", null: false
+    t.index ["hobby_id"], name: "index_illusts_on_hobby_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -79,6 +81,8 @@ ActiveRecord::Schema.define(version: 2020_06_13_011224) do
     t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "hobby_id", null: false
+    t.index ["hobby_id"], name: "index_musics_on_hobby_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,6 +103,8 @@ ActiveRecord::Schema.define(version: 2020_06_13_011224) do
     t.string "thumb"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "hobby_id", null: false
+    t.index ["hobby_id"], name: "index_videos_on_hobby_id"
   end
 
   add_foreign_key "favorites", "hobbies"
@@ -108,6 +114,9 @@ ActiveRecord::Schema.define(version: 2020_06_13_011224) do
   add_foreign_key "groups", "genres"
   add_foreign_key "hobbies", "genres"
   add_foreign_key "hobbies", "users"
+  add_foreign_key "illusts", "hobbies"
   add_foreign_key "messages", "groups"
   add_foreign_key "messages", "users"
+  add_foreign_key "musics", "hobbies"
+  add_foreign_key "videos", "hobbies"
 end
