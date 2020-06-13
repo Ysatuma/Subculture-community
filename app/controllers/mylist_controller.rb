@@ -45,7 +45,6 @@ class MylistController < ApplicationController
     else
       redirect_to genre_path(params[:hobby][:genre_id])
     end
-
   end
 
 
