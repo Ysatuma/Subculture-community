@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_235238) do
+ActiveRecord::Schema.define(version: 2020_06_13_023416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,18 +49,21 @@ ActiveRecord::Schema.define(version: 2020_06_12_235238) do
 
   create_table "hobbies", force: :cascade do |t|
     t.string "title", null: false
-    t.string "content"
-    t.string "image"
     t.bigint "user_id"
     t.bigint "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
-    t.string "music"
-    t.string "illust"
-    t.integer "contents_id"
     t.index ["genre_id"], name: "index_hobbies_on_genre_id"
     t.index ["user_id"], name: "index_hobbies_on_user_id"
+  end
+
+  create_table "illusts", force: :cascade do |t|
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "hobby_id", null: false
+    t.index ["hobby_id"], name: "index_illusts_on_hobby_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -71,6 +74,14 @@ ActiveRecord::Schema.define(version: 2020_06_12_235238) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_messages_on_group_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "musics", force: :cascade do |t|
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "hobby_id", null: false
+    t.index ["hobby_id"], name: "index_musics_on_hobby_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,6 +97,15 @@ ActiveRecord::Schema.define(version: 2020_06_12_235238) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.string "content", null: false
+    t.string "thumb"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "hobby_id", null: false
+    t.index ["hobby_id"], name: "index_videos_on_hobby_id"
+  end
+
   add_foreign_key "favorites", "hobbies"
   add_foreign_key "favorites", "users"
   add_foreign_key "group_users", "groups"
@@ -93,6 +113,9 @@ ActiveRecord::Schema.define(version: 2020_06_12_235238) do
   add_foreign_key "groups", "genres"
   add_foreign_key "hobbies", "genres"
   add_foreign_key "hobbies", "users"
+  add_foreign_key "illusts", "hobbies"
   add_foreign_key "messages", "groups"
   add_foreign_key "messages", "users"
+  add_foreign_key "musics", "hobbies"
+  add_foreign_key "videos", "hobbies"
 end

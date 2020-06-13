@@ -1,35 +1,55 @@
-//コンテンツ画面のスタイル設定
+//コンテンツ再生画面のスタイル設定
 .content{
   padding: 10px;
+  background-color: #FFFFEE;
 
-  &__title{
-    font-size: 30px;
+  &__upper{
+    display: flex;
+    margin-bottom: 10px;
+
+    &__title{
+      font-size: 30px;
+    }
+
+    &__info{
+      margin-left: 40px;
+
+      &__add-mylist, &__rm-mylist{
+        display: none;
+      }
+
+      &__added, &__removed{
+        display: none;
+      }
+
+    }
   }
 
   &__wrap{
-    display: flex;
+    @include set_boxes_to_horizontal(space-between);
 
     &__player{
       height: 80%;
     }
-    &__info{
-      margin: 40px 20px 0px 20px;
-    
-      &__add-mylist{
-        display: none;
+
+    &__youtube-api{
+      width: $youtube_width;
+
+      &__comment{
+        margin-bottom: 10px;
       }
 
-      &__added{
-        display: none;
-      }
+      &__item{
+        
+        &__title{
 
-      &__rm-mylist{
-        display: none;
-      }
+          font-size: 14px;
+        }
 
-      &__removed{
-        display: none;
+        &__channel{
+          font-size: 12px;
+        }
       }
-    }
+    }  
   }
 }

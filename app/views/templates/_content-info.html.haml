@@ -1,7 +1,7 @@
 .contents-list
   .contents-list__cnt
-    - if (genre.id == 1) 
-      = link_to image_tag("#{hobby.image}", class: ("contents-list__cnt__factor")), genre_content_path(genre.id,hobby.id)
+    - if (genre.id == 1)
+      = link_to image_tag("#{hobby.video.thumb}", class: ("contents-list__cnt__factor")), genre_content_path(genre.id,hobby.id)
       .contents-list__cnt__title
         = "件名：#{hobby.title}"
     - elsif (genre.id == 2) 
@@ -13,7 +13,7 @@
     - else
       .contents-list__cnt__title
         .contents-list__cnt__title__no-smnl
-          = link_to image_tag(hobby.illust.url(:thumb)), genre_content_path(genre.id,hobby.id), class:"contents-list__cnt__title__no-smnl-link"
+          = link_to image_tag(hobby.illust.content.url(:thumb)), genre_content_path(genre.id,hobby.id), class:"contents-list__cnt__title__no-smnl-link"
 
   .contents-list__info
     .contents-list__author

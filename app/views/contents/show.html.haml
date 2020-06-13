@@ -2,42 +2,47 @@
 = render 'templates/user_menu', groups: @groups, genre: @genre
 
 .content
-  .content__title
-    = @hobby.title
+  .content__upper
+    .content__upper__title
+      = @hobby.title
 
-  .content__wrap
-    .content__wrap__player
-      - if @genre.id == 1
-        = video_tag "/uploads/hobby/content/#{@hobby.id}/#{@hobby.content.identifier}", controls: 'true',height: "480", width: "640"
-      - elsif  @genre.id == 2
-        = audio_tag "/uploads/hobby/music/#{@hobby.id}/#{@hobby.music.identifier}", controls: 'true'
-      - else
-        = image_tag @hobby.illust.url
-
-    .content__wrap__info
-      .content__wrap__info__author
+    .content__upper__info
+      .content__upper__info__author
         = "投稿者：#{@hobby.user.name}"
 
       - if user_signed_in?
         .mylist
           - if @fav_num == 0      
-            = button_to "マイリストに追加", genre_contents_path(@genre.id), class: "content__wrap__info__add-mylist active", params: {user_id: current_user.id, hobby_id: "#{params[:id]}", id: "#{@hobby.id}"}
-            .content__wrap__info__added
+            = button_to "マイリストに追加", genre_contents_path(@genre.id), class: "content__upper__info__add-mylist active", params: {user_id: current_user.id, hobby_id: "#{params[:id]}", id: "#{@hobby.id}"}
+            .content__upper__info__added
               コンテンツを登録しました
           - else 
-            = button_to "マイリストから削除", genre_content_path(@genre.id), class: "content__wrap__info__rm-mylist active", params: {favorite_id: @fav_num}, method: "delete"
-            .content__wrap__info__removed
+            = button_to "マイリストから削除", genre_content_path(@genre.id), class: "content__upper__info__rm-mylist active", params: {favorite_id: @fav_num}, method: "delete"
+            .content__upper__info__removed
               コンテンツの登録を削除しました
 
-    .content__youtube-api
-      - @youtube_data.items.each do |item|
-        - snippet = item.snippet
-        .content__youtube-api__title
-          = snippet.title
-        -# = snippet.published_at
-        .content__youtube-api__channel
-          = snippet.channel_title
-        %iframe(width="320" height="240" src="https://www.youtube.com/embed/#{item.id.video_id}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+  .content__wrap
+    .content__wrap__player
+      - if @genre.id == 1
+        = video_tag "#{@hobby.video.content}", controls: 'true',height: "450  ", width: "800"
+      - elsif  @genre.id == 2
+        = audio_tag "#{@hobby.music.content}", controls: 'true'
+      - else
+        = image_tag @hobby.illust.content.to_s
+
+    - if @genre.id == 1
+      .content__wrap__youtube-api
+        .content__wrap__youtube-api__comment
+          関連すると思われる動画(youtube)
+        - @youtube_data.items.each do |item|
+          .content__wrap__youtube-api--item
+            - snippet = item.snippet
+            .content__wrap__youtube-api__title
+              = snippet.title
+            -# = snippet.published_at
+            .content__wrap__youtube-api__channel
+              = snippet.channel_title
+            %iframe(width="320" height="240" src="https://www.youtube.com/embed/#{item.id.video_id}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
 
 
 
