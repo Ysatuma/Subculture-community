@@ -15,26 +15,41 @@ class MylistController < ApplicationController
   # 投稿されたコンテンツをDBへ登録する
   def create
     @hobby = Hobby.create(hobby_params)
+
+    binding.pry
     # コンテンツのジャンル毎に処理を変更
     case @hobby[:genre_id]
-    # 動画をスクリーンショット共にDBへ登録
+
+    # 動画を保存
     when 1
+      @video = Video.new(content_params) 
+      @hobby.contents_id = @video.id
+
+      # スクリーンショットを作成、DBへ登録
+
       file_name = params[:hobby][:content].original_filename
       movie = FFMPEG::Movie.new("#{@location}/#{@hobby[:id]}/#{file_name}")  
       movie.screenshot("#{@location}/#{@hobby[:id]}/screenshot.jpg",resolution: '160x120')
-      @hobby.image = "/uploads/hobby/content/#{@hobby[:id]}/screenshot.jpg"
-      @hobby.save 
+      @video.thumb = "/uploads/hobby/content/#{@hobby[:id]}/screenshot.jpg"
+      @video.save!
 
-    # 動画以外はコンテンツ登録以外を行わない
-    else   
+    #音楽を保存
+    when 2
+      @music = Music.create(content_params) 
+      @hobby.contents_id = @music.id
+    # イラストを保存  
+    when 3
+      @illust = Illust.create(content_params) 
+      @hobby.contents_id = @illust.id
+    else
     end
+
+    @hobby.save!
+    binding.pry
 
     # グループ用の投稿か否かでリダイレクト先を変更
     if params[:hobby][:group_id] != '0'
       redirect_to genre_group_path(params[:hobby][:genre_id], params[:hobby][:group_id])
-   
-    elsif params[:hobby][:group_id] != '3'
-      redirect_to root_path
     else
       redirect_to genre_path(params[:hobby][:genre_id])
     end
@@ -44,18 +59,23 @@ class MylistController < ApplicationController
 
   private
 
+  # hobbyテーブル用のストロングパラメータ
   def hobby_params
     case params[:hobby][:genre_id]
     when '1'
-      params.require(:hobby).permit(:title,:content, :genre_id, :group_id).merge(user_id: current_user.id)
+      params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
     when '2'
-      params.require(:hobby).permit(:title,:music, :genre_id, :group_id).merge(user_id: current_user.id)
+      params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
     when '3'
-      params.require(:hobby).permit(:title, :illust, :genre_id, :group_id).merge(user_id: current_user.id)
+      params.require(:hobby).permit(:title, :genre_id, :group_id).merge(user_id: current_user.id)
     else
 
-    end
-    
+    end  
+  end  
+
+  # 各コンテンツテーブル用のストロングパラメータ
+  def content_params
+    params.require(:hobby).permit(:content)    
   end  
 
   def save_location
