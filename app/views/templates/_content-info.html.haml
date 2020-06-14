@@ -18,9 +18,9 @@
           上のタイトルをクリックして音楽を視聴する
     - else
       .contents-list__cnt__title
-        .contents-list__cnt__title__no-smnl
-          = link_to image_tag(hobby.illust.content.url(:thumb)), genre_content_path(genre.id,hobby.id), class:"contents-list__cnt__title__no-smnl-link"
-
+        = link_to image_tag(hobby.illust.content.url(:thumb)), genre_content_path(genre.id,hobby.id), class:"contents-list__cnt__title__no-smnl-link"
+        = "イラスト名:#{hobby.title}"
+        
   .contents-list__info
     .contents-list__author
       = "投稿者：#{hobby.user.name}"    
