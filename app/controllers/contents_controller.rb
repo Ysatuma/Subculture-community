@@ -22,7 +22,7 @@ class ContentsController < ApplicationController
     end
     @hobby = Hobby.find(params[:id])
     @genre = Genre.find(params[:genre_id])
-    @youtube_data = find_videos('明日香ちゃんねる')
+    @youtube_data = find_videos(@hobby.title)
         
   end
 
