@@ -21,11 +21,11 @@ class MylistController < ApplicationController
     # 動画を保存、スクリーンショットを作成、DBへ登録
     when 1
       @video = Video.create(content_params) 
-      file_name = params[:hobby][:content].original_filename
-      movie = FFMPEG::Movie.new("#{@location}/#{@video[:id]}/#{file_name}")  
-      movie.screenshot("#{@location}/#{@video[:id]}/screenshot.jpg",resolution: '160x120')
-      @video.thumb = "/uploads/video/content/#{@video[:id]}/screenshot.jpg"
-      @video.save!
+      # file_name = params[:hobby][:content].original_filename
+      # movie = FFMPEG::Movie.new("#{@location}/#{@video[:id]}/#{file_name}")  
+      # movie.screenshot("#{@location}/#{@video[:id]}/screenshot.jpg",resolution: '160x120')
+      # @video.thumb = "/uploads/video/content/#{@video[:id]}/screenshot.jpg"
+      # @video.save!
 
     #音楽を保存
     when 2    

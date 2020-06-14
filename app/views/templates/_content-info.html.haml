@@ -1,9 +1,15 @@
 .contents-list
   .contents-list__cnt
     - if (genre.id == 1)
-      = link_to image_tag("#{hobby.video.thumb}", class: ("contents-list__cnt__factor")), genre_content_path(genre.id,hobby.id)
+      -# = link_to image_tag("#{hobby.video.thumb}", class: ("contents-list__cnt__factor")), genre_content_path(genre.id,hobby.id)
+      -# .contents-list__cnt__title
+      -#   = "件名：#{hobby.title}" 
       .contents-list__cnt__title
-        = "件名：#{hobby.title}"
+        .contents-list__cnt__title__no-smnl
+          = link_to "タイトル：#{hobby.title}", genre_content_path(genre.id,hobby.id), class:"contents-list__cnt__title__no-smnl-link"
+        .contents-list__cnt__title__comment  
+          上のタイトルをクリックして動画を視聴する 
+
     - elsif (genre.id == 2) 
       .contents-list__cnt__title
         .contents-list__cnt__title__no-smnl
