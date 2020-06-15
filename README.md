@@ -65,6 +65,8 @@
 * rails バージョン：
   Rails 5.2.4.3
 
+* PostgreSQL バージョン：
+  (PostgreSQL) 12.3
 
 
 # データベース構成
