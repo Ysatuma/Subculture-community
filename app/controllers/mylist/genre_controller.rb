@@ -2,7 +2,7 @@ class Mylist::GenreController < ApplicationController
 
   # 登録したコンテンツをジャンル毎に表示
   def show
-    hobbies = Hobby.where(genre_id: params[:id]).where(group_id:'0').includes(:user)
+    hobbies = Hobby.where(genre_id: params[:id]).includes(:user)
     @genre = Genre.find(params[:id])
     @favorites = Favorite.where(user_id: current_user.id) 
 
