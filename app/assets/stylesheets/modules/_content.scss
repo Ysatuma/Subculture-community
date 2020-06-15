@@ -14,14 +14,6 @@
     &__info{
       margin-left: 40px;
 
-      &__add-mylist, &__rm-mylist{
-        display: none;
-      }
-
-      &__added, &__removed{
-        display: none;
-      }
-
     }
   }
 
@@ -51,5 +43,16 @@
         }
       }
     }  
+  }
+}
+
+
+.mylist{
+  
+  &__btn{
+    
+    &__add, &__remove{
+      display: none;
+    }
   }
 }

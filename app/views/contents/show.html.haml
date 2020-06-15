@@ -1,4 +1,6 @@
 
+%input#url{type: "hidden", value: "#{@hobby.id}"} 
+
 = render 'templates/user_menu', groups: @groups, genre: @genre
 
 .content
@@ -12,14 +14,20 @@
 
       - if user_signed_in?
         .mylist
-          - if @fav_num == 0      
-            = button_to "マイリストに追加", genre_contents_path(@genre.id), class: "content__upper__info__add-mylist active", params: {user_id: current_user.id, hobby_id: "#{params[:id]}", id: "#{@hobby.id}"}
-            .content__upper__info__added
-              コンテンツを登録しました
-          - else 
-            = button_to "マイリストから削除", genre_content_path(@genre.id), class: "content__upper__info__rm-mylist active", params: {favorite_id: @fav_num}, method: "delete"
-            .content__upper__info__removed
-              コンテンツの登録を削除しました
+          .mylist__btn
+            - if @fav_num == 0   
+              %button{ class:"mylist__btn__add active"   }
+                マイリストに追加
+              %button{ class:"mylist__btn__remove"   }
+                マイリストから削除
+
+            - else
+              %button{ class:"mylist__btn__add"   }
+                マイリストに追加             
+              %button{ class:"mylist__btn__remove active"   }
+                マイリストから削除
+
+            %input#fav_num{type:"hidden", value:"#{@fav_num}"} 
 
   .content__wrap
     .content__wrap__player

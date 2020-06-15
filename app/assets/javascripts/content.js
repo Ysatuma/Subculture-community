@@ -1,33 +1,49 @@
 $(function(){
 
-  // ボタン押下時に登録済み又は未登録へ切り替える
-  $('.contents__add-mylist').on('click', function(e){
-    console.log($(this).closest(".mylist").find('.contents__rm-mylist'))
-    $(this).removeClass("active");
-    $(this).closest(".mylist").find('.contents__added').addClass("active");
+  function build_html(data) {
+    var html =
+    `
+    <input id="fav_num", type="hidden", value="${data.fav}">
+    `
+    return html
+  }
 
+   // ボタン押下時に登録済み又は未登録へ切り替える
+  $('.mylist__btn__add').on('click', function(e){
+    $(this).removeClass("active");
+    $(this).closest(".mylist").find('.mylist__btn__remove').addClass("active");
+    $.ajax({
+      url: '../contents',
+      type: "POST",
+      data: gon.hobby
     })
-  });
+    .done(function(data){
+      console.log(data)
+      $('#fav_num').remove();
+      $('.mylist__btn').append(build_html(data));
+    })
+    .fail(function(){
+      alart("マイリストへの登録に失敗しました")
+    })
+  })
 
-  $('.contents__rm-mylist').on('click', function(e){
+  $('.mylist__btn__remove').on('click', function(e){
     $(this).removeClass("active");
-    $(this).closest(".mylist").find('.contents__removed').addClass("active") 
-  });
-
-  // ボタン押下時に登録済み又は未登録へ切り替える
-  $('.mylist__add').on('click', function(e){
-    $(this).removeClass("active");
-    $(this).closest(".mylist").find('.mylist__remove').addClass("active")
-    $('.mylist__status').attr('id', 'add');
-    console.log($(this).attr('pathname')) 
-
-  });
-  
-  $('.mylist__remove').on('click', function(e){
-    $(this).removeClass("active");
-    $(this).closest(".mylist").find('.mylist__add').addClass("active") 
-    $('.mylist__status').attr('id', 'remove');
-  });
-
-// $(".contents__rm-mylist").addClass("active");
-// $(".contents__add-mylist").removeClass("active");    
+    $(this).closest(".mylist").find('.mylist__btn__add').addClass("active");
+    var url = $('#url').val();
+    var fav = $('#fav_num').val();
+    console.log(gon.fav)
+    $.ajax({
+      url:  url,
+      type: "DELETE",
+      data:{ favorite_id: fav}
+    })
+    .done(function(data){ 
+      $('#fav_num').remove();
+      $('.mylist__btn').append(build_html(data));
+    })
+    .fail(function(){
+      alart("マイリストからの削除に失敗しました")
+    })
+  })
+})

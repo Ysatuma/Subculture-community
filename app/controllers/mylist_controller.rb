@@ -15,6 +15,7 @@ class MylistController < ApplicationController
   # 投稿されたコンテンツをDBへ登録する
   def create
     @hobby = Hobby.create(hobby_params)
+    
     # コンテンツのジャンル毎に処理を変更
     case @hobby[:genre_id]
 

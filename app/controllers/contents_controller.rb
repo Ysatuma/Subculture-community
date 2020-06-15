@@ -4,8 +4,18 @@ class ContentsController < ApplicationController
 
   # お気に入り登録した場合にDBへ登録
   def create
-    @favorite = Favorite.create(favorite_params)
-    redirect_to action: 'show', id: params[:hobby_id]
+    @favorite = Favorite.new(
+      user_id: favorite_params[:user_id],
+      hobby_id: favorite_params[:id]
+    )
+
+    if @favorite.save
+      respond_to do |format|
+        format.json{@fav_num = @favorite.id } 
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   # コンテンツの内容を表示
@@ -23,14 +33,26 @@ class ContentsController < ApplicationController
     @hobby = Hobby.find(params[:id])
     @genre = Genre.find(params[:genre_id])
     @youtube_data = find_videos(@hobby.title)
+    gon.hobby = @hobby
+    gon.fav = @fav_num 
         
   end
 
   # お気に入り登録をDBから削除
   def destroy
+
     favorite = Favorite.find(params[:favorite_id])
-    favorite.destroy
-    redirect_to action: 'show', id: params[:id]
+
+    @fav_num = 0
+
+    if favorite.destroy
+      respond_to do |format|
+        format.json 
+      end
+    else
+      redirect_to root_path
+    end
+
   end
 
   # youtube api v3による動画検索メソッド
@@ -52,10 +74,11 @@ class ContentsController < ApplicationController
   end
 
 
+
   private 
 
   def favorite_params
-    params.permit(:user_id, :hobby_id)
+    params.permit(:user_id, :id)
   end
 
   
