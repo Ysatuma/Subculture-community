@@ -32,7 +32,7 @@ class ContentsController < ApplicationController
     end
     @hobby = Hobby.find(params[:id])
     @genre = Genre.find(params[:genre_id])
-    @youtube_data = find_videos(@hobby.title)
+    @youtube_data = find_videos(@hobby.title,@genre.id)
     gon.hobby = @hobby
     gon.fav = @fav_num 
         
@@ -56,7 +56,7 @@ class ContentsController < ApplicationController
   end
 
   # youtube api v3による動画検索メソッド
-  def find_videos(keyword, after: 1.months.ago, before: Time.now)
+  def find_videos(keyword,genre, after: 1.months.ago, before: Time.now)
     service = Google::Apis::YoutubeV3::YouTubeService.new
     service.key = GOOGLE_API_KEY
 
@@ -70,7 +70,7 @@ class ContentsController < ApplicationController
       published_after: after.iso8601,
       published_before: before.iso8601
     }
-    service.list_searches(:snippet, opt)
+  service.list_searches(:snippet, opt) if(genre == 1)
   end
 
 
