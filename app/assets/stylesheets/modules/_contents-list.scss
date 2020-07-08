@@ -2,11 +2,12 @@
 
 .contents-list{
   @include set_box_size(170px,225px);
-  background-color: #DDFFFF;
-  border: 1px solid #BBFFFF;
+  background: rgba(218,166,163,0.8);
+  border: 1px solid rgba(218,166,163,0.8);
   margin: 10px;
   padding: 5px;
-  color:#444444;
+  color:#000000;
+  border-radius: 10px;
   @include set_boxes_to_horizontal(space-between);
   flex-direction: column;
 
@@ -22,6 +23,7 @@
         @include set_boxes_to_horizontal(center);
 
         &-link{
+          color: #6ADA92;
           text-decoration: none;
         }
       }

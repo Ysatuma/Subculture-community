@@ -1,7 +1,8 @@
 //コンテンツ再生画面のスタイル設定
 .content{
   padding: 10px;
-  background-color: #FFFFEE;
+  // background-color: #FFFFEE;
+  color: $font-color  ;
 
   &__upper{
     display: flex;
