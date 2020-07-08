@@ -4,4 +4,5 @@ class Illust < ApplicationRecord
 
   mount_uploader :content, IllustUploader
 
+  validates :content,  presence: true
 end
