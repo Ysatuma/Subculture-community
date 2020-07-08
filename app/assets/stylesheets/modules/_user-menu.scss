@@ -2,11 +2,12 @@
 .user-menu{
   @include set_box_size(100%,60px);
   @include set_boxes_to_horizontal(space-around);
-  background-color:#F3FFD8;
+  // background-color:#F3FFD8;
+  color:$font-color;
 
   &__genre{
     @include set_menu_btn(150px,50px);
-    z-index: 1;
+    z-index: 5;
 
     &__list{
       display: none;  
@@ -19,7 +20,7 @@
 
   &__group{
     @include set_menu_btn(150px,50px);
-    z-index: 1;
+    z-index: 5;
 
     &__list{
       @include set_box_size(180px,50px);
@@ -27,7 +28,7 @@
       display: none;
 
       &__li{
-        padding-left: 10px;
+        padding-left: 10px; 
       }
 
     }
@@ -35,10 +36,11 @@
 
   &__my{
     @include set_menu_btn(150px, 50px);
-    z-index: 1;
+    z-index: 5;
+    
     
     &__list{
-      background-color: sandybrown;
+      // background-color: sandybrown;
       display: none;
 
       &__li{
@@ -72,11 +74,11 @@
 
       &__logout{
         width: 50%;
-        background-color: #CEF9DC;
+        // background-color: #CEF9DC;
       }
       &__user{
         width: 50%;
-        background-color:#E6FFE9;
+        // background-color:#E6FFE9;
       }
     }
   }
@@ -91,7 +93,7 @@
   }
 
   & a{
-    color: black ;
+    color:$font-color;
     text-decoration: none;
   }
 
@@ -102,7 +104,8 @@
 
 //javascriptで出現する選択肢のスタイル設定
 .jsstyle{
-  background-color: #9BF9CC;
+  // background-color: #9BF9CC;
+  background: rgba(219,29,117,0.6);
   border-bottom: 2px solid;
   border-image: repeating-linear-gradient(to right,
     #FF5252 0 30px,
