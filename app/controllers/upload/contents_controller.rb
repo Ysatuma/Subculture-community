@@ -11,6 +11,12 @@ class Upload::ContentsController < ApplicationController
     else 
       @group_id = 0
     end
+
+    @genres = []
+    Genre.all.each do |genre|
+      @genres.push([genre.name, genre.id])
+    end
+
   end
 
   # グループ内で投稿されたコンテンツを登録

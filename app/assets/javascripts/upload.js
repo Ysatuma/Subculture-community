@@ -26,4 +26,23 @@ $(function(){
     $('.upload__form__content__message').text('コンテンツが選択されました')
   })
 
+  // グループ内投稿の場合にジャンルに対応したコンテンツ投稿用アイコンを表示
+  $(window).load(function(){
+    if ($('.selected-genre').length != 0){
+      var val = $('#hobby_genre_id').val()
+      switch (val) {
+        case 0:     
+          break;
+        case '1':
+          $('#movie-form').addClass("active")
+          break;
+        case '2':
+          $('#music-form').addClass("active")
+          break;   
+        case '3':
+          $('#illust-form').addClass("active")
+          break;           
+      }
+    }
+  })
 })
