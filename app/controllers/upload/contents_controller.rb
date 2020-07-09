@@ -63,4 +63,8 @@ class Upload::ContentsController < ApplicationController
     params.require(:hobby).permit(:content).merge(hobby_id: @hobby.id)
   end  
 
+  def save_location
+    @location = "public/uploads/video/content"
+  end
+
 end

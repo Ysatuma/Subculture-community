@@ -35,29 +35,14 @@ body{
   line-height: 60px;
   text-align: center;
   display: fixed;
-
-  // background-color:#FFD54F;
-	// background:linear-gradient(#FFD54F,#FFA000);
 }
-// .header::after {
-// 	content: '';
-//   @include set_box_size(100%,100%);
-// 	display:block;
-// 	background-size: 20px 20px;
-// 	background-image:
-// 	 linear-gradient(rgba(255,255,255,.25) 3%, rgba(255,255,255,.25) 3%, transparent 3%,
-// 	  transparent 97%, rgba(255,255,255,.25) 97%, rgba(255,255,255,.25) 100%),
-// 	 linear-gradient(90deg, rgba(255,255,255,.25) 3%, rgba(255,255,255,.25) 3%, transparent 3%,
-// 	  transparent 97%, rgba(255,255,255,.25) 97%, rgba(255,255,255,.25) 100%);
-// }
+
 
 
 //コンテンツ表示領域の基本スタイル設定
 .contents-main{
   width: 100vw;
   height: calc(100vh - 120px);
-
-  // background-image:linear-gradient(-45deg, #f9f8f7 25%, #ffffff 25%, #ffffff 50%, #f9f8f7  50%, #f9f8f7 75%, #ffffff 75%, #ffffff);
 
   padding: 20px;
   display: flex;

@@ -30,7 +30,6 @@
       &__li{
         padding-left: 10px; 
       }
-
     }
   }
 
@@ -40,14 +39,12 @@
     
     
     &__list{
-      // background-color: sandybrown;
       display: none;
 
       &__li{
         padding-left: 10px;
       }
-    }
-         
+    }        
   }
   
   &__info{
@@ -62,7 +59,6 @@
     );
     border-image-slice: 1;
 
-
     &__edit{
       @include set_box_size(150px,46px); 
       line-height: calc(46px / 2);
@@ -74,11 +70,9 @@
 
       &__logout{
         width: 50%;
-        // background-color: #CEF9DC;
       }
       &__user{
         width: 50%;
-        // background-color:#E6FFE9;
       }
     }
   }
