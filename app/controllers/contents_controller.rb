@@ -20,7 +20,9 @@ class ContentsController < ApplicationController
 
   # コンテンツの内容を表示
   def show
-
+    @hobby = Hobby.find(params[:id])
+    @genre = Genre.find(params[:genre_id])
+    
     if user_signed_in?
       @favorite = Favorite.where(user_id: current_user.id, hobby_id: params[:id])
       if @favorite[0] != nil
@@ -30,12 +32,12 @@ class ContentsController < ApplicationController
       end
       @groups = User.find(current_user.id).groups.where(genre_id: params[:genre_id])
     end
-    @hobby = Hobby.find(params[:id])
-    @genre = Genre.find(params[:genre_id])
-    @youtube_data = find_videos(@hobby.title,@genre.id)
     gon.hobby = @hobby
     gon.fav = @fav_num 
-        
+
+    if @genre.id == 1
+      @youtube_data = find_videos(@hobby.title,@genre.id)
+    end
   end
 
   # お気に入り登録をDBから削除

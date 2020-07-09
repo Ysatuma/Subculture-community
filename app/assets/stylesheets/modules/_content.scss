@@ -2,7 +2,7 @@
 .content{
   padding: 10px;
   // background-color: #FFFFEE;
-  color: $font-color  ;
+  color: $font-color;
 
   &__upper{
     display: flex;
@@ -27,6 +27,9 @@
 
     &__youtube-api{
       width: $youtube_width;
+      height: $youtube_height;
+      flex-wrap: wrap;
+      overflow: scroll;
 
       &__comment{
         margin-bottom: 10px;

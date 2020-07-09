@@ -1,5 +1,5 @@
 .upload
-  = form_for @hobby ,url: user_mylist_index_path(current_user.id),:multipart => true, class:"upload__form" do |form|
+  = form_for @hobby ,url: genre_upload_contents_path,:multipart => true, class:"upload__form" do |form|
     .upload__form__genre.upstyle
       ジャンル：
       =form.select :genre_id, [["-----", 0],["映画", 1],["音楽", 2],["イラスト",3]], class: 'upload__form__genre__selcter'
@@ -33,9 +33,7 @@
 
 
     -# グループid用の隠しパラメータ
-    - if params[:controller]=="upload/contents" 
-      =form.hidden_field :group_id,type: 'hidden', value: "#{group.id}"
-    - else
-      =form.hidden_field :group_id,type: 'hidden', value: "0"
+    =form.hidden_field :group_id,type: 'hidden', value: "#{group_id}"
+
 
     =form.submit "投稿する"

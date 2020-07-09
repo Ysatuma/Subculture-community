@@ -38,7 +38,7 @@
         マイリスト
       .user-menu__my__list
         .user-menu__my__list__upload.jsstyle
-          = link_to "コンテンツ投稿", new_user_mylist_path(current_user.id)
+          = link_to "コンテンツ投稿", new_genre_upload_content_path(current_user.id)
         - @all_genres.each do |genre|
           .user-menu__my__list__li.jsstyle   
             = link_to "#{genre.name}", user_mylist_genre_path(current_user.id,genre.id), method: "get"

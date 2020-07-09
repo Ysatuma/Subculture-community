@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :home, only: [:index] 
 
   resources :users, only: [:edit, :update] do
-    resources :mylist, only: [:index,:new, :create]
+    resources :mylist, only: [:index]
     namespace :mylist do
       resources :genre, only: [:show]
     end
@@ -18,11 +18,12 @@ Rails.application.routes.draw do
 
     resources :groups,  only: [:index, :new, :create, :show, :edit, :update] do
       resources :messages, only: [:create]
-    
-      namespace :upload do
-        resources :contents, only: [:new, :create]
-  
-      end
     end
+
+    namespace :upload do
+      resources :contents, only: [:new, :create]
+
+    end
+ 
   end 
 end

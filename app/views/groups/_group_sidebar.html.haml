@@ -5,7 +5,7 @@
       .groups__sidebar__group__upper__name
         = "グループ名：#{group.name}"  
       .groups__sidebar__group__upper__post-btn
-        = button_to  new_genre_group_upload_content_path(params[:genre_id],group.id), method: "get" do
+        = button_to  new_genre_upload_content_path(group.genre_id), method: "get" ,params: { group_id: group.id }do
           コンテンツを投稿する  
       
     .groups__sidebar__group__member
