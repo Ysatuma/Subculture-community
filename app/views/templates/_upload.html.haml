@@ -2,8 +2,10 @@
   = form_for @hobby ,url: genre_upload_contents_path,:multipart => true, class:"upload__form" do |form|
     .upload__form__genre.upstyle
       ジャンル：
-      =form.select :genre_id, [["-----", 0],["映画", 1],["音楽", 2],["イラスト",3]], class: 'upload__form__genre__selcter'
-
+      - if @group_id == 0
+        =form.select :genre_id, @genres, { prompt: "選択して下さい" }, {class: 'upload__form__genre__selcter'}
+      - else
+        =form.select :genre_id, @genres, { selected: @genre.id }, {class: 'upload__form__genre__selcter selected-genre'}
     .upload__form__title.upstyle
       タイトル：
       =form.text_field :title, placeholder: "title"
