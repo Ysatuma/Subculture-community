@@ -1,5 +1,7 @@
 
 = render 'templates/user_menu', groups: @groups, genre: @genre
 
--# コンテンツ一覧表示領域      
+-# コンテンツ一覧表示領域     
+.contents-title
+  = current_user.name+"さんがお気に入り登録した"+@genre.name+"のコンテンツ" 
 = render 'templates/contents-list', hobbies: @hobbies, favorites: @favorites, fav_list: @fav_list

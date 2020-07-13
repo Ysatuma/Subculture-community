@@ -5,10 +5,10 @@
     =icon('fas','list')
     ジャンル
     .user-menu__genre__list
-      - @all_genres.each do |genre|
-        .user-menu__genre__list__li.jsstyle   
-          = link_to "#{genre.name}", genre_path(genre.id), method: "get"
-
+      - @all_genres.each do |genre| 
+        = link_to genre_path(genre.id), method: "get" do
+          .user-menu__genre__list__li.jsstyle 
+            = genre.name
   -# ユーザー昨日の管理メニュー
   - if user_signed_in?
     -# 所属グループの管理メニュー
@@ -19,14 +19,14 @@
 
         -#ジャンルが指定されていなければ表示しない 
         - if params[:controller]!="mylist" &&  params[:controller]!="home"   
-          .user-menu__group__list__new.jsstyle   
-            = link_to "新しいグループを作成",  new_genre_group_path(genre.id)
-
+          = link_to new_genre_group_path(genre.id) do
+            .user-menu__group__list__new.jsstyle   
+              新しいグループを作成
           -# グループ画面にいなければ表示しない
           - if params[:controller]=="groups" 
-            .user-menu__group__list__edit.jsstyle   
-              = link_to "選択中のグループを編集",  edit_genre_group_path(genre.id, group.id)
-
+            = link_to edit_genre_group_path(genre.id, group.id) do
+              .user-menu__group__list__edit.jsstyle  
+                選択中のグループを編集
           -# ログイン中のユーザーが所属していてかつ現在選択中のジャンルのグループを表示
           - groups.each do |group|
             .user-menu__group__list__li.jsstyle   
@@ -34,15 +34,17 @@
 
     .user-menu__my
       = link_to user_mylist_index_path(current_user.id), method: "get" do
-        =icon('fas','bookmark')
-        マイリスト
+        .user-menu__my__title
+          =icon('fas','bookmark')
+          マイリスト
       .user-menu__my__list
-        .user-menu__my__list__upload.jsstyle
-          = link_to "コンテンツ投稿", new_genre_upload_content_path(current_user.id)
-        - @all_genres.each do |genre|
-          .user-menu__my__list__li.jsstyle   
-            = link_to "#{genre.name}", user_mylist_genre_path(current_user.id,genre.id), method: "get"
-
+        = link_to new_genre_upload_content_path(current_user.id) do
+          .user-menu__my__list__upload.jsstyle
+            コンテンツ投稿
+        - @all_genres.each do |genre|  
+          = link_to user_mylist_genre_path(current_user.id,genre.id), method: "get" do
+            .user-menu__my__list__li.jsstyle 
+              = genre.name
 
     .user-menu__info
       .user-menu__info__name

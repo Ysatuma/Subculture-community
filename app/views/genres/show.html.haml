@@ -2,4 +2,6 @@
 = render 'templates/user_menu', groups: @groups, genre: @genre
 
 -# コンテンツ一覧表示
+.contents-title
+  = @genre.name+"のコンテンツ一覧"
 = render 'templates/contents-list', hobbies: @hobbies, favorites: @favorites, fav_list: @fav_list
