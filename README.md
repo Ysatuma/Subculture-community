@@ -49,7 +49,7 @@
   * ログインは、画面上部の一覧にある「ログイン」から必要事項を入力して行う。
 
 
-![新規登録、ログインボタン](https://subculture-community-for-pg.herokuapp.com/assets/usage1.png)
+![新規登録、ログインボタン](https://subculture-community-for-pg.herokuapp.com/assets/usage/usage1.png)
 
 
 2. コンテンツの閲覧
@@ -57,7 +57,12 @@
 
   * トップページから閲覧する場合は、ジャンルの選択肢が表示されるので閲覧したいジャンルをクリックすることで一覧を確認できる。また、画面上部の一覧にある「ジャンル」からも同様の操作ができる。
 
+![ジャンル選択](https://subculture-community-for-pg.herokuapp.com/assets/usage/usage2.png)
+
+
   * 各コンテンツを閲覧する際にログイン済みの場合、投稿者名の下部に「マイリスト登録/削除」ボタンが表示される。登録したコンテンツは、画面上部の一覧にある「マイリスト」から該当するジャンルを選択することでも閲覧できる。
+
+![ジャンル選択](https://subculture-community-for-pg.herokuapp.com/assets/usage/usage3.png)
 
 
 3. コンテンツの投稿
@@ -69,6 +74,8 @@
 
   * イラスト：jpg,jpeg,gif,png
 
+![ジャンル選択](https://subculture-community-for-pg.herokuapp.com/assets/usage/usage4.png)
+
 
 4. グループの作成、利用及び編集
   ユーザーログイン後、コンテンツ閲覧時に画面上部の一覧にある「グループ」から「新しいグループを作成」をクリックすると、必要事項を入力することで閲覧していたコンテンツと同じジャンルに関するグループを作成できる。作成されたグループは、「グループ」から確認することができる。
@@ -76,6 +83,8 @@
   * グループ名右側にある「コンテンツを投稿」から、コンテンツを投稿できる。投稿されたコンテンツはグループ専用となり2.の方法では閲覧出来ず、該当するグループ画面からのみ閲覧出来る。
 
   * グループ画面にはグループ用チャット機能があり、画面左下のフォームに記入後、「送信ボタン」をクリックすることでフォームの内容を発信できる。
+
+![ジャンル選択](https://subculture-community-for-pg.herokuapp.com/assets/usage/usage5.png)
 
 
 # ローカル環境での構築手順
